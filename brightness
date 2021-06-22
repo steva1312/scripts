@@ -1,0 +1,10 @@
+#!/bin/bash
+
+dir="/sys/class/backlight/amdgpu_bl0/"
+current="$(cat "${dir}brightness")"
+max="$(cat "${dir}max_brightness")"
+new="$(($current + $1))"
+
+if [[ $new -ge 0 && $new -le $max ]]; then
+	echo $new | sudo tee "${dir}brightness" 
+fi

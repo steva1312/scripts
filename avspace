@@ -1,0 +1,5 @@
+#!/bin/bash
+
+space="$(df -h | awk 'NR==4 {print $4}')"
+
+printf "%s\n" "${space} free"

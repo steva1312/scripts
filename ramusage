@@ -1,0 +1,9 @@
+#!/bin/bash
+
+used="$(free -h | awk 'NR==2{print substr($3,1,length($3)-1)}')"
+used_raw="$(free | awk 'NR==2{print $3}')"
+total_raw="$(free | awk 'NR==2{print $2}')"
+
+perc=$(echo "${used_raw}/${total_raw}*100" | bc -l)
+
+printf "%s%.0f%s\n" "${used} (" "${perc}" "%)"

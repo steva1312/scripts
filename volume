@@ -1,0 +1,20 @@
+#!/bin/bash
+
+volume="$(pamixer --get-volume)"
+muted="$(pamixer --get-mute)"
+
+icon=""
+
+if [[ $volume -lt 50 ]]; then
+	icon=""
+fi
+
+if [[ $volume -lt 20 ]]; then
+	icon=""
+fi
+
+if [[ $muted = "true" ]]; then
+	icon=""
+fi
+
+printf "%s\n" "${icon} ${volume}%"
